@@ -7,8 +7,7 @@ const postControllers = require('../controllers/post-controll')
 
 router.get('/:pid', postControllers.getPostById)
 
-router.post('/',[check('title').not().isEmpty ,
-    check('content').not().isLength({ min:5 })],
+router.post('/',check('content').isLength({ min:5 }),
     postControllers.createPost)
 
 router.delete('/:pid', postControllers.deletePost)
