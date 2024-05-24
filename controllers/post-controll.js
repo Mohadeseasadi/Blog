@@ -1,16 +1,32 @@
-const express = require('express');
 const {v4:uuidv4} = require('uuid');
 const Post = require('../models/posts');
 
-const getPostById = (req,res,next)=>{
+const getPostById = async(req,res,next)=>{
+    const postId = req.params.pid
 
+    const post = await Post.findById(postId)
+
+    res.json({ post })
 }
 
-const createPost = (req,res,next)=>{
+const createPost = async(req,res,next)=>{
+    const {title,content} = req.body
 
+    const createdPost = new Post({ title ,content })
+
+    await createdPost.save()
+
+    res.status(201).json({ post: createdPost })
 }
 
-const deletePost = (req,res,next)=>{
+const deletePost = async(req,res,next)=>{
+    const postId = req.params.pid
+
+    const post = await Post.findById(postId)
+
+    await post.deleteOne()
+
+    res.status(200).json({ massage:'post deleted' })
 
 }
 

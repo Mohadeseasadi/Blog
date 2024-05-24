@@ -4,10 +4,10 @@ const router = express.Router();
 
 const postControllers = require('../controllers/post-controll')
 
-router.get('/:pId', postControllers.getPostById)
+router.get('/:pid', postControllers.getPostById)
 
 router.post('/', postControllers.createPost)
 
-router.delete('/:pId', postControllers.deletePost)
+router.delete('/:pid', postControllers.deletePost)
 
 module.exports = router
