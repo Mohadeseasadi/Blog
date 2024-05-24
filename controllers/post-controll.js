@@ -27,7 +27,6 @@ const deletePost = async(req,res,next)=>{
     await post.deleteOne()
 
     res.status(200).json({ massage:'post deleted' })
-
 }
 
 exports.getPostById = getPostById ;
